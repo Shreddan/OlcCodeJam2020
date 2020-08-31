@@ -1,5 +1,6 @@
 #pragma once
 #include <olcPixelGameEngine.h>
+#include <Extensions/olcPGEX_SplashScreen.h>
 #include "Map.h"
 
 
@@ -17,10 +18,14 @@ public:
 
 	void drawMap();
 
+	olcPGEX_SplashScreen splash;
+
 
 	float offsetX = 0.0f;
 	float offsetY = 0.0f;
 
 	Map* currentMap = nullptr;
+
+	int roomGap = 20;
 };
 

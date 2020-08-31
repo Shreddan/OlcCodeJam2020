@@ -5,7 +5,7 @@
 struct Room
 {
 	Room();
-	static const int roomSize = 30;
+	static const int roomSize = 60;
 	
 	bool* exits = nullptr;
 };

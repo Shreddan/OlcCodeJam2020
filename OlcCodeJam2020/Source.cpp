@@ -4,6 +4,6 @@
 int main()
 {
     Engine engine;
-    engine.Construct(800, 600, 1, 1);
+    engine.Construct(1200, 800, 1, 1);
     engine.Start();
 }

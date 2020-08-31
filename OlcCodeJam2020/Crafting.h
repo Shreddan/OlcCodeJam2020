@@ -3,6 +3,8 @@ class Crafting
 {
 public:
 
+	Crafting();
+	~Crafting();
 
 };
 

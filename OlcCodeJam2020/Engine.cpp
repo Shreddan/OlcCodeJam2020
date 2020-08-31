@@ -19,6 +19,8 @@ bool Engine::OnUserCreate()
 
 bool Engine::OnUserUpdate(float fElapsedTime)
 {
+	if (splash.AnimateSplashScreen(fElapsedTime)) return true;
+
 	Clear(olc::BLACK);
 	drawMap();
 	return true;
@@ -42,8 +44,7 @@ void Engine::drawMap()
 	{
 		for (int y = 0; y < currentMap->mapHeight; y++)
 		{
-			DrawRect(olc::vi2d(x, y), olc::vi2d(x * Room::roomSize, y * Room::roomSize), olc::BLUE);
-			//DrawLine(olc::vi2d(x * Room::roomSize, y * Room::roomSize), olc::vi2d(x * Room::roomSize + Room::roomSize, y * Room::roomSize + Room::roomSize), olc::RED);
+			DrawRect(olc::vi2d((x * Room::roomSize) + roomGap, (y * Room::roomSize) + roomGap),olc::vi2d(Room::roomSize - roomGap, Room::roomSize - roomGap), olc::BLUE);
 		}
 	}
 }
