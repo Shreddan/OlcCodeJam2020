@@ -2,6 +2,15 @@
 #include <olcPixelGameEngine.h>
 #include <Extensions/olcPGEX_SplashScreen.h>
 #include "Map.h"
+#include "Player.h"
+
+enum gState
+{
+	Start,
+	Main,
+	Pause,
+	End
+};
 
 
 class Engine : public olc::PixelGameEngine
@@ -16,9 +25,10 @@ public:
 	void WorldtoScreen(float worldX, float worldY, int &screenX, int &screenY);
 	void ScreentoWorld(int screenX, int screenY, float &worldX, float &worldY);
 
-	void inputHandler();
+	void inputHandler(float fElapsedTime);
 
 	void drawMap();
+	void drawPlayer();
 
 	olcPGEX_SplashScreen splash;
 
@@ -36,6 +46,12 @@ public:
 
 	Map* currentMap = nullptr;
 
+	Player player;
+
 	int roomGap = 20;
+
+	int gameState = 0;
+
+	std::string name = "Player";
 };
 

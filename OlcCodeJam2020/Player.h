@@ -8,10 +8,9 @@ public:
 	~Player();
 
 	std::string name;
-	float x;
-	float y;
-	float direction;
-	bool isDead;
+	int x;
+	int y;
+	std::vector<CraftingItem> inventory;
 
 };
 
