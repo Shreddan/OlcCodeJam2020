@@ -7,7 +7,8 @@
 struct Room
 {
 	Room();
-	static const int roomSize = 400;
+	int x, y;
+	static const int roomSize = 200;
 	bool isStart = false;
 	bool* exits = nullptr;
 	std::vector<CraftingItem> floor;

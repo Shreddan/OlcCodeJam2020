@@ -6,7 +6,7 @@
 
 enum gState
 {
-	Start,
+	Begin,
 	Main,
 	Pause,
 	End
@@ -22,12 +22,15 @@ public:
 	bool OnUserCreate();
 	bool OnUserUpdate(float fElapsedTime);
 
+	void StateManager();
+
 	void WorldtoScreen(float worldX, float worldY, int &screenX, int &screenY);
 	void ScreentoWorld(int screenX, int screenY, float &worldX, float &worldY);
 
 	void inputHandler(float fElapsedTime);
 
 	void drawMap();
+	void updateViewport();
 	void drawPlayer();
 
 	olcPGEX_SplashScreen splash;

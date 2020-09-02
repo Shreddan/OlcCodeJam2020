@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include "Crafting.h"
 
 class Player
 {

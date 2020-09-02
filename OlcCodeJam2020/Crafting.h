@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-
+#include <vector>
 
 struct CraftingItem
 {
@@ -17,7 +17,7 @@ public:
 	~Crafting();
 
 
-	
+	CraftingItem* CraftingInterface[2];
 
 
 };

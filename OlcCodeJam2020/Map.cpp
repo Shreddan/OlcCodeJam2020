@@ -17,6 +17,8 @@ void Map::setupRooms()
 	{
 		for (int y = 0; y < mapHeight; y++)
 		{
+			rooms[y * mapWidth + x].x = x * Room::roomSize;
+			rooms[y * mapWidth + x].y = y * Room::roomSize;
 			rooms[y * mapWidth + x].exits[0] = true;
 			rooms[y * mapWidth + x].exits[1] = rand() % 1;
 			rooms[y * mapWidth + x].exits[2] = rand() % 1;
