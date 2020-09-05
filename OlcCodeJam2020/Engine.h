@@ -37,12 +37,18 @@ public:
 
 	olcPGEX_SplashScreen splash;
 
+	int visibTileX;
+	int visibTileY;
+
 
 	float CamX;
 	float CamY;
 
 	int pixelSX;
 	int pixelSY;
+
+	int offplayX;
+	int offplayY;
 
 	float offsetX = 0.0f;
 	float offsetY = 0.0f;

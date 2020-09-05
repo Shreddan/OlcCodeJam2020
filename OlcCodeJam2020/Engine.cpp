@@ -132,9 +132,11 @@ void Engine::CreateItems()
 
 void Engine::drawMap()
 {
+	visibTileX = ScreenWidth() / Room::roomSize;
+	visibTileY = ScreenHeight() / Room::roomSize;
 
-	offsetX = CamX - offsetX;
-	offsetY = CamY - offsetY;
+	offsetX = CamX - (float)visibTileX / 2.0f;
+	offsetY = CamY - (float)visibTileY / 2.0f;
 
 	for (int x = 0; x < currentMap->mapWidth; x++)
 	{
@@ -159,11 +161,12 @@ void Engine::drawMap()
 
 void Engine::updateViewport()
 {
-	CamX = player.x / Room::roomSize;
-	CamY = player.y / Room::roomSize;;
+	CamX = player.x;
+	CamY = player.y;
 }
 
 void Engine::drawPlayer()
 {
-	FillRect(olc::vi2d(player.x, player.y), olc::vi2d(25, 25), olc::YELLOW);
+	WorldtoScreen(player.x, player.y, offplayX, offplayY);
+	FillRect(olc::vi2d(offplayX, offplayY), olc::vi2d(25, 25), olc::YELLOW);
 }
