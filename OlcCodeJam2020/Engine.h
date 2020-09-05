@@ -29,20 +29,17 @@ public:
 
 	void inputHandler(float fElapsedTime);
 
+	void CreateItems();
+
 	void drawMap();
-	void updateViewport();
+	//void updateViewport();
 	void drawPlayer();
 
 	olcPGEX_SplashScreen splash;
 
-	int pixelSX;
-	int pixelSY;
 
-	float MouseX;
-	float MouseY;
-
-	float PanX;
-	float PanY;
+	float CamX;
+	float CamY;
 
 	float offsetX = 0.0f;
 	float offsetY = 0.0f;
@@ -56,5 +53,7 @@ public:
 	int gameState = 0;
 
 	std::string name = "Player";
+
+	std::vector<CraftingItem> items;
 };
 

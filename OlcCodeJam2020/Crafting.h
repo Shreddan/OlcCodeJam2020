@@ -4,8 +4,15 @@
 
 struct CraftingItem
 {
+	enum ItemType
+	{
+
+	};
+
+	CraftingItem();
+	CraftingItem(std::string name, int ID, bool Vital);
 	std::string name;
-	int Type;
+	int ItemID;
 	bool isVital;
 };
 
@@ -19,6 +26,7 @@ public:
 
 	CraftingItem* CraftingInterface[2];
 
+	CraftingItem Craft();
 
 };
 

@@ -12,11 +12,10 @@ Engine::~Engine()
 bool Engine::OnUserCreate()
 {
 	srand(time(NULL));
-	pixelSX = 0;
-	pixelSY = 0;
 	currentMap = new Map(10, 10);
 	currentMap->setupRooms();
 	currentMap->rooms[rand() % (currentMap->mapWidth * currentMap->mapHeight)].isStart = true;
+	
 
 	for (int x = 0; x < currentMap->mapWidth; x++)
 	{
@@ -29,6 +28,8 @@ bool Engine::OnUserCreate()
 			}
 		}
 	}
+
+	//updateViewport();
 	return true;
 }
 
@@ -48,7 +49,6 @@ void Engine::StateManager()
 	{
 		case Begin:
 		{
-
 			gameState = Main;
 			break;
 		}
@@ -56,6 +56,7 @@ void Engine::StateManager()
 		{
 			drawMap();
 			drawPlayer();
+			updateViewport();
 			break;
 		}
 		case Pause:
@@ -71,53 +72,73 @@ void Engine::StateManager()
 	}
 }
 
-void Engine::WorldtoScreen(float worldX, float worldY, int &screenX, int &screenY)
+void Engine::WorldtoScreen(float worldX, float worldY, int& screenX, int& screenY)
 {
 	screenX = (int)(worldX - offsetX);
 	screenY = (int)(worldY - offsetY);
 }
 
-void Engine::ScreentoWorld(int screenX, int screenY, float &worldX, float &worldY)
+void Engine::ScreentoWorld(int screenX, int screenY, float& worldX, float& worldY)
 {
-	worldX = (float)(screenX) + offsetX;
-	worldY = (float)(screenY) + offsetY;
+	worldX = (float)(screenX)+offsetX;
+	worldY = (float)(screenY)+offsetY;
 }
 
 void Engine::inputHandler(float fElapsedTime)
 {
+	if (GetKey(olc::RIGHT).bPressed)
+	{
+		player.x += Room::roomSize;
+	}
+	else if (GetKey(olc::LEFT).bPressed)
+	{
+		player.x -= Room::roomSize;
+	}
 
+	if (GetKey(olc::UP).bPressed)
+	{
+		player.y -= Room::roomSize;
+	}
+	else if (GetKey(olc::DOWN).bPressed)
+	{
+		player.y += Room::roomSize;
+	}
+}
+
+void Engine::CreateItems()
+{
+	items.emplace_back("Torch", 0, true);
+	items.emplace_back("Battery", 1, false);
+	items.emplace_back("Spade", 2, true);
+	items.emplace_back("", 3, false);
+	items.emplace_back("", 4, false);
+	items.emplace_back();
+	items.emplace_back();
+	items.emplace_back();
+	items.emplace_back();
+	items.emplace_back();
+	items.emplace_back();
+	items.emplace_back();
+	items.emplace_back();
+	items.emplace_back();
+	items.emplace_back();
+	items.emplace_back();
+	items.emplace_back();
 }
 
 void Engine::drawMap()
 {
-	for (int x = 0; x < currentMap->mapWidth; x++)
-	{
-		for (int y = 0; y < currentMap->mapHeight; y++)
-		{
-			WorldtoScreen(currentMap->rooms[y * currentMap->mapWidth + x].x, currentMap->rooms[y * currentMap->mapWidth + x].y, pixelSX, pixelSY);
 
-			if (currentMap->rooms[y * currentMap->mapWidth + x].isStart)
-			{
-				FillRect(olc::vi2d((pixelSX * Room::roomSize) + roomGap, (pixelSY * Room::roomSize) + roomGap), olc::vi2d(Room::roomSize - roomGap, Room::roomSize - roomGap), olc::GREEN);
-			}
-			else
-			{
-				FillRect(olc::vi2d((pixelSX * Room::roomSize) + roomGap, (pixelSY * Room::roomSize) + roomGap), olc::vi2d(Room::roomSize - roomGap, Room::roomSize - roomGap), olc::BLUE);
-			}
-		}
-	}
+	
 }
 
-void Engine::updateViewport()
-{
-	PanX = player.x;
-	PanY = player.y;
-
-	offsetX -= (player.x - PanX);
-	offsetY -= (player.y - PanY);
-}
+//void Engine::updateViewport()
+//{
+//	CamX = player.x / Room::roomSize;
+//	CamY = player.y / Room::roomSize;;
+//}
 
 void Engine::drawPlayer()
 {
-	Draw(olc::vi2d(player.x, player.y), olc::YELLOW);
+	FillRect(olc::vi2d(player.x, player.y), olc::vi2d(25, 25), olc::YELLOW);
 }
