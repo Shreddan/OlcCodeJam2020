@@ -32,7 +32,7 @@ public:
 	void CreateItems();
 
 	void drawMap();
-	//void updateViewport();
+	void updateViewport();
 	void drawPlayer();
 
 	olcPGEX_SplashScreen splash;
@@ -40,6 +40,9 @@ public:
 
 	float CamX;
 	float CamY;
+
+	int pixelSX;
+	int pixelSY;
 
 	float offsetX = 0.0f;
 	float offsetY = 0.0f;

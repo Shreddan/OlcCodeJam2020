@@ -10,8 +10,20 @@ Crafting::~Crafting()
 
 CraftingItem Crafting::Craft()
 {
-    switch(CraftingInterface[0]->ItemID)
+    switch(GreatMachine[0]->ItemID)
     {
+        case 0:
+        {
+            switch (GreatMachine[1]->ItemID)
+            {
+                case 0:
+                {
+                    return CraftingItem("Invalid Item", 20, false);
+                    break;
+                }
+            }
+            break;
+        }
 
     }
 }

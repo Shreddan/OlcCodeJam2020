@@ -4,11 +4,6 @@
 
 struct CraftingItem
 {
-	enum ItemType
-	{
-
-	};
-
 	CraftingItem();
 	CraftingItem(std::string name, int ID, bool Vital);
 	std::string name;
@@ -24,7 +19,7 @@ public:
 	~Crafting();
 
 
-	CraftingItem* CraftingInterface[2];
+	CraftingItem* GreatMachine[2];
 
 	CraftingItem Craft();
 
